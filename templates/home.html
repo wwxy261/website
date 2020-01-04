@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>网站</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://static.runoob.com/assets/foundation-icons/foundation-icons.css">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
+  <script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>
+</head>
+<body>
+<div class="fixed">
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/admin">登录</a></h1>
+    </li>
+    <!-- 小屏幕上折叠按钮: 去掉 .menu-icon 类，可以去除图标。 
+      如果需要只显示图片，可以删除 "Menu" 文本 -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>菜单</span></a></li>
+  </ul>
+
+</nav>
+</div>
+
+<div class="medium-12 columns">
+	<div style="padding:30px">
+  <div class="row" >  
+ <form action="/updata" method="post" enctype="multipart/form-data">
+ 
+ <div style="padding:0px 0px 0px 250px">
+  
+    
+    <div class="medium-6 columns">
+      <div class="row ">
+        <div class="medium-7 columns">
+		{% csrf_token %}
+         <input type="file" name="myFile" id="file" >
+        
+        </div>
+        <div class="medium-5 columns">
+		{% csrf_token %}
+		<input type="submit"  value="上传" >
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</form>
+
+<a href="/download" class="button button tiny" role="button" target="_blank">下载表格</a>
+</div>
+
+
+<table width="100%" border="0" cellspacing="1" cellpadding="4" bgcolor="#cccccc" class="tabtop13" align="center" >
+  <tr>
+	<thead>
+    <tr>
+        <th align="middle">角色名称</th>
+		<th align="middle">寄养时间</th>
+        <th align="middle">账号</th>
+		<th align="middle">密码</th>
+		<th align="middle">区服</th>
+		<th align="middle">类型</th>
+        <th align="middle">目标结界</th>
+		<th align="middle">角色id</th>
+		<th align="middle">模拟器</th>
+		<th align="middle">上号方式</th>
+        <th align="middle">限制时间</th>
+		<th align="middle">到期时间</th>
+		<th align="middle">坑型</th>
+
+    </tr>
+	</thead>
+	<tbody>
+	{% for line in data %}
+    <tr>
+        <td width="10%" ><a href="../detail/?name={{line.Role_name}}" class="fa fa-linkedin" target="_blank">{{line.Role_name}}</a></td>
+		<td width="10%" >{{line.Foster_time}}</td>
+        <td width="10%">{{line.user}}</td>
+        <td width="10%">{{line.pwd}}</td>
+		<td width="10%">{{line.District_Service}}</td>
+		<td width="6%">{{line.type}}</td>
+		<td width="10%">{{line.Target_boundary}}</td>
+		<td width="10%">{{line.u_id}}</td>
+		<td width="6%">{{line.simulator}}</td>
+		<td width="8%">{{line.mode}}</td>
+		<td width="10%">{{line.time1}}</td>
+		<td width="10%">{{line.time2}}</td>
+		<td width="10%">{{line.Pit_type}}</td>
+    </tr>
+    {% endfor %}
+	</tbody>
+</table>
+
+      
+    </div>
+
+</div>
+
+    
+
+
+<!-- 初始化 Foundation JS -->
+<script>
+$(document).ready(function() {
+    $(document).foundation();
+})
+</script>
+
+</body>
+</html>
+
+
+
+
+
